@@ -2,10 +2,12 @@ import csv
 import random
 import math
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 def load_cities(filename):
     cities = []
-    with open(filename, newline='') as csvfile:
+    filepath = Path(__file__).parent / filename
+    with filepath.open(newline='') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             if len(row) < 2:
@@ -30,7 +32,6 @@ def swap_adjacent(solution):
     i = random.randint(0, len(solution) - 2)
     new_solution[i], new_solution[i + 1] = new_solution[i + 1], new_solution[i]
     return new_solution
-
 
 def inversion(solution):
     if len(solution) < 2:
